@@ -1,0 +1,5 @@
+AddEmployeePageTest.class
+HomePageTest.class
+com\qa\ExtentReportListener\ExtentReporterNG.class
+LoginTest.class
+AdminPageTest.class

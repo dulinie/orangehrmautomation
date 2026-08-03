@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-current.dtd">
+<suite name="OrangeHRM Automation Suite">
+    <test name="Orange HRM Test Suite">
+        <classes>
+            <class name="LoginTest"/>
+           
+        </classes>
+    </test>
+</suite>
