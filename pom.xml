@@ -13,7 +13,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.release>21</maven.compiler.release>
+    <maven.compiler.release>25</maven.compiler.release>
   </properties>
 
   <dependencies>
@@ -44,9 +44,9 @@
       <version>5.3.0</version>
     </dependency>
     <dependency>
-      <groupId>com.aventstack</groupId>
+      <groupId>com.relevantcodes</groupId>
       <artifactId>extentreports</artifactId>
-      <version>5.1.1</version>
+      <version>2.41.2</version>
     </dependency>
     <dependency>
       <groupId>com.relevantcodes</groupId>
@@ -74,8 +74,13 @@
         <configuration>
           <suiteXmlFiles>
             <suiteXmlFile>src/main/resources/testng.xml</suiteXmlFile>
+<<<<<<< HEAD
             <!--<suiteXmlFile>src/main/resources/testng_regression.xml</suiteXmlFile>
             <suiteXmlFile>src/main/resources/testng_sanity.xml</suiteXmlFile>-->
+=======
+           <!--> <suiteXmlFile>src/main/resources/testng_regression.xml</suiteXmlFile>
+            <suiteXmlFile>src/main/resources/testng_sanity.xml</suiteXmlFile> -->
+>>>>>>> 95c0db1110b814d8869f399d561b1ad4cf05c046
           </suiteXmlFiles>
         </configuration>
       </plugin>
