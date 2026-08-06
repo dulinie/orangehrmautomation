@@ -74,13 +74,10 @@
         <configuration>
           <suiteXmlFiles>
             <suiteXmlFile>src/main/resources/testng.xml</suiteXmlFile>
-<<<<<<< HEAD
-            <!--<suiteXmlFile>src/main/resources/testng_regression.xml</suiteXmlFile>
-            <suiteXmlFile>src/main/resources/testng_sanity.xml</suiteXmlFile>-->
-=======
-           <!--> <suiteXmlFile>src/main/resources/testng_regression.xml</suiteXmlFile>
-            <suiteXmlFile>src/main/resources/testng_sanity.xml</suiteXmlFile> -->
->>>>>>> 95c0db1110b814d8869f399d561b1ad4cf05c046
+            <!--
+            <suiteXmlFile>src/main/resources/testng_regression.xml</suiteXmlFile>
+            <suiteXmlFile>src/main/resources/testng_sanity.xml</suiteXmlFile>
+            -->
           </suiteXmlFiles>
         </configuration>
       </plugin>
