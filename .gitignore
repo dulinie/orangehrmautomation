@@ -4,3 +4,5 @@ target/
 *.iml
 .vscode/
 .github/modernize/
+logs/
+*.log
