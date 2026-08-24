@@ -45,19 +45,19 @@ public static void initialize() {
     // Initialize WebDriver based on properties
     String browser = prop.getProperty("browser");
      logger.info("Initializing WebDriver for browser: {}", browser);
-    if (browser.equalsIgnoreCase("chrome")) {
+    if ("chrome".equalsIgnoreCase(browser)){
         logger.debug("Setting up ChromeDriver via WebDriverManager");
         // Set up ChromeDriver using WebDriverManager
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
     } 
-     else if (browser.equalsIgnoreCase("firefox")) {
+     else if ("firefox".equalsIgnoreCase(browser)) {
           logger.debug("Setting up FirefoxDriver via WebDriverManager");
          // Set up FirefoxDriver using WebDriverManager
        WebDriverManager.firefoxdriver().setup();
          driver = new FirefoxDriver();
      }
-     else if (browser.equalsIgnoreCase("edge")) {
+     else if ("edge".equalsIgnoreCase(browser)) {
          logger.debug("Setting up EdgeDriver via WebDriverManager");
          // Set up EdgeDriver using WebDriverManager
         WebDriverManager.edgedriver().setup();
@@ -65,6 +65,7 @@ public static void initialize() {
      }
      else {
         logger.error("Unsupported browser specified in properties: {}", browser);
+        return; // stop here - don't continue with a null driver
     }
 
     logger.info("WebDriver initialized successfully");
