@@ -11,11 +11,12 @@ This project demonstrates a scalable UI test automation framework covering core 
 - **Language:** Java
 - **Build Tool:** Maven
 - **Automation Tool:** Selenium WebDriver
-- **Test Runner:** TestNG *(update if you used JUnit instead)*
+- **Test Runner:** TestNG 
 - **Design Pattern:** Page Object Model (POM)
 - **Test Data:** External data-driven approach via `orangehrmTestData`
-- **Reporting:** *(add here — e.g. Extent Reports, Allure, or TestNG default HTML report)*
+- **Reporting:** Extent Reports, TestNG default HTML report
 - **Screenshot Capture:** Automatic screenshot on test failure (see `screenshots/`)
+- ** L
 
 ## 📁 Project Structure
 
@@ -35,7 +36,7 @@ orangehrmautomation/
 - Page Object Model for maintainable, reusable page interactions
 - Data-driven testing using external test data files
 - Automatic screenshot capture on test failure for easier debugging
-- Configurable browser/environment setup *(update if applicable — e.g. cross-browser support)*
+- Configurable browser/environment setup 
 
 ## 🚀 Getting Started
 
