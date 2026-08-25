@@ -1,9 +1,8 @@
+package tests;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import org.testng.Assert;
-
 import base.BaseTest;
 import pages.AdminPage;
 import pages.HomePage;
@@ -70,6 +69,9 @@ public void clickOnAdminTabTest() {
 
     @AfterMethod
     public void tearDown() {
-        driver.quit(); // Close the browser session after all tests are done
+        if(driver != null) { 
+            driver.quit(); // Close the browser session after all tests are done
+        }
+        
     }   
 }
