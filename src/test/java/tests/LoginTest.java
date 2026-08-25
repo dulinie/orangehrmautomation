@@ -1,9 +1,7 @@
-
+package tests;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-
 import org.testng.Assert;
 
 import base.BaseTest;
@@ -45,13 +43,15 @@ public void isLogoDisplayedTest() {
 @Test(priority = 3)
 public void loginTest() {   
         homePage = loginPage.login(prop.getProperty("username"), prop.getProperty("password")); // Perform login using credentials from config.properties
-       // String homeTitle = homePage.validateHomePageTitle(); // Validate the home page title after login
-       // assertEquals("OrangeHRM", homeTitle); // Assert that the home page title is as expected
+        String homeTitle = homePage.validateHomePageTitle(); // Validate the home page title after login
+        Assert.assertEquals(homeTitle, "OrangeHRM", "Home page title mismatch"); // Assert that the home page title is as expected
     }
 
     @AfterMethod    
     public void tearDown() {
-        driver.quit(); // Close the browser session after each test
+        if (driver != null) {
+            driver.quit(); // Close the browser session after each test
+        }
     }
 
 }
