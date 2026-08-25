@@ -1,7 +1,4 @@
 package pages;
-
-
-
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -37,8 +34,7 @@ public class LoginPage extends BaseTest {
         logger.debug("LoginPage object initialized");
     }
 
-    // Actions on Login Page  load
-    public String validateLoginPageTitle() {
+        public String validateLoginPageTitle() {
         String title = driver.getTitle();
         logger.info("Login page title retrieved: {}", title);
         return title;   
@@ -58,6 +54,9 @@ public boolean validateOrangeHrmLogo() {
         return false;
     }
 }
+
+
+
 
 public HomePage login(String un, String pwd) {
      logger.info("Attempting login with username: {}", un);
