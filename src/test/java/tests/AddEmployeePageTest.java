@@ -1,9 +1,11 @@
 package tests;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import Utilities.WaitUtils;
+import Utilities.DataProviderUtils;
+import Utilities.ScreenshotUtils;
 import base.BaseTest;
 import pages.AddEmployeePage;
 import pages.AdminPage;
@@ -17,8 +19,8 @@ public class AddEmployeePageTest extends BaseTest {
     HomePage homePage;  
     AdminPage adminPage;
     AddEmployeePage addEmployeePage;
-    String sheetname = "EmployeeDetails"; // Specify the sheet name for test data
-
+    
+    
     public AddEmployeePageTest() {
         super(); // Call the BaseTest constructor to initialize properties
     }
@@ -26,8 +28,7 @@ public class AddEmployeePageTest extends BaseTest {
     @BeforeMethod   
     public void setUp() {
         initialize(); // Initialize WebDriver and open the browser
-       // testUtil = new TestUtil(); // Create an instance of the TestUtil class
-        
+               
         loginPage = new LoginPage(); // Create an instance of the LoginPage
         homePage = loginPage.login(prop.getProperty("username"), prop.getProperty("password")); // Perform login to navigate to HomePage
         adminPage = new AdminPage(); // Create an instance of the AdminPage
@@ -36,22 +37,27 @@ public class AddEmployeePageTest extends BaseTest {
         
     }
 
-@DataProvider(name = "getemployeeData")
-public Object[][] getemployeeData() {
-    return WaitUtils.getTestData(sheetname); // Fetch test data from the specified sheet
-}
-
+    @DataProvider(name = "getemployeeData")
+    public Object[][] getemployeeData() {
+        return DataProviderUtils.getTestData("EmployeeDetails"); // Fetch test data from the specified sheet
+        
+    }
 
     @Test(dataProvider = "getemployeeData")
-    public void testAddEmployee(String firstName, String lastName, String status, String username, String password, String confirmPassword) {
+    public void testAddEmployee(String urole, String ename, String status, String username, String password, String confirmPassword) {
         addEmployeePage = adminPage.clickAddEmployeeButton(); // Click on the Add Employee button to navigate to the AddEmployeePage
-        addEmployeePage.addEmployee(firstName, lastName, status, username, password, confirmPassword); // Fill in the employee details and submit the form
+        addEmployeePage.addEmployee(urole, ename, status, username, password, confirmPassword); // Fill in the employee details and submit the form
+       
     }
 
-     @AfterMethod
-    public void tearDown() {
-        if(driver != null) { 
-               driver.quit(); // Close the browser and quit the WebDriver
+    
+    @AfterMethod
+public void tearDown(ITestResult result) {
+    if (result.getStatus() == ITestResult.FAILURE) {
+        ScreenshotUtils.captureScreenshot(driver, result.getName());
     }
+    if (driver != null) {
+        driver.quit();
     }
+}
 }
