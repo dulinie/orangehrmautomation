@@ -3,6 +3,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import Utilities.WaitUtils;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -40,7 +43,7 @@ public class AddEmployeePage extends BaseTest {
     public void addEmployee(String userRole, String employeeName, String status, String username, String password, String confirmPassword) {
         logger.info("Adding employee: {} with role: {}", employeeName, userRole);
         userRoleDropdown.click();
-    
+        WaitUtils.waitForElementToBeVisible(driver, driver.findElement(By.xpath("//div[@role='option' and normalize-space()='" + userRole + "']")));
         driver.findElement(By.xpath("//div[@role='option' and normalize-space()='" + userRole + "']")).click();
 
         employeeNameInput.sendKeys(employeeName);
