@@ -4,8 +4,8 @@
 <!--
     <test name="Orange HRM Test Suite">
         <classes>
-            <class name="LoginTest"/>
-            <class name="HomePageTest"/>
+            <class name="tests.LoginTest"/>
+            <class name="tests.HomePageTest"/>
         </classes>
     </test>
 -->

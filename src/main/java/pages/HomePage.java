@@ -37,7 +37,7 @@ public HomePage() {
 }
 
 public String validateHomePageTitle() {
-     String title = driver.getTitle();
+    String title = driver.getTitle();
     logger.info("Home page title retrieved: {}", title);
     return title;
 
@@ -49,7 +49,6 @@ public boolean isDashboardHeaderDisplayed() {
     logger.info("Dashboard header is displayed: {}", isDisplayed);  
     return isDisplayed;
 }
-
 
 
 public AdminPage clickAdminMenu() {
