@@ -2,7 +2,11 @@ package tests;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import Utilities.ScreenshotUtils;
+
 import org.testng.Assert;
+import org.testng.ITestResult;
 
 import base.BaseTest;
 import pages.HomePage;
@@ -47,11 +51,14 @@ public void loginTest() {
         Assert.assertEquals(homeTitle, "OrangeHRM", "Home page title mismatch"); // Assert that the home page title is as expected
     }
 
-    @AfterMethod    
-    public void tearDown() {
-        if (driver != null) {
-            driver.quit(); // Close the browser session after each test
-        }
+@AfterMethod
+public void tearDown(ITestResult result) {
+    if (result.getStatus() == ITestResult.FAILURE) {
+        ScreenshotUtils.captureScreenshot(driver, result.getName());
     }
+    if (driver != null) {
+        driver.quit();
+    }
+}
 
 }

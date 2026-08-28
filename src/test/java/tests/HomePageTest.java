@@ -2,7 +2,12 @@ package tests;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import Utilities.ScreenshotUtils;
+
 import org.testng.Assert;
+import org.testng.ITestResult;
+
 import base.BaseTest;
 import pages.AdminPage;
 import pages.HomePage;
@@ -49,29 +54,25 @@ public class HomePageTest extends BaseTest {
 @Test(priority = 3)
 public void clickOnAdminTabTest() {
         adminPage = homePage.clickAdminMenu(); // Click on the Admin tab
-        //String adminPageTitle = homePage.validateAdminPageTitle(); // Validate the Admin page title after clicking the Admin tab
-        //Assert.assertEquals(adminPageTitle, "Admin", "Admin page title mismatch"); // Assert that the Admin page title is as expected
-    }
+            }
 
     @Test(priority = 4)
     public void clickOnPIMTabTest() {
         pimPage = homePage.clickPIMMenu(); // Click on the PIM tab
-        //String pimPageTitle = homePage.validatePIMPageTitle(); // Validate the PIM page title after clicking the PIM tab
-        //Assert.assertEquals(pimPageTitle, "PIM", "PIM page title mismatch"); // Assert that the PIM page title is as expected
-    }
+            }
 
     @Test(priority = 5)
     public void clickOnLeaveTabTest() {
         leavePage = homePage.clickLeaveMenu(); // Click on the Leave tab
-        //String leavePageTitle = homePage.validateLeavePageTitle(); // Validate the Leave page title after clicking the Leave tab
-        //Assert.assertEquals(leavePageTitle, "Leave", "Leave page title mismatch"); // Assert that the Leave page title is as expected
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        if(driver != null) { 
-            driver.quit(); // Close the browser session after all tests are done
         }
-        
-    }   
+
+  @AfterMethod
+public void tearDown(ITestResult result) {
+    if (result.getStatus() == ITestResult.FAILURE) {
+        ScreenshotUtils.captureScreenshot(driver, result.getName());
+    }
+    if (driver != null) {
+        driver.quit();
+    }
+} 
 }
