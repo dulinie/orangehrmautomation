@@ -4,7 +4,13 @@ A Selenium-based test automation framework for the [OrangeHRM](https://opensourc
 
 ## 🎯 Purpose
 
-This project demonstrates a UI test automation framework covering core OrangeHRM workflows — login, dashboard navigation, admin user management, and employee creation. It was built to practice and showcase test automation design patterns, framework architecture, and CI integration.
+This project demonstrates a UI test automation framework covering followiing core OrangeHRM  workflows 
+1. login
+2. dashboard navigation
+3. admin user management
+4. New employee creation.
+
+ It was built to practice and showcase test automation design patterns, framework architecture, and CI integration.
 
 ## 🛠️ Tech Stack
 
@@ -42,7 +48,7 @@ orangehrmautomation/
 
 ## ✅ Features
 
-- **Page Object Model** for maintainable, reusable page interactions
+- **Page Object Model** -  maintainable, reusable page interactions
 - **Data-driven testing** — employee creation test data pulled from Excel via Apache POI, decoupling test logic from test data
 - **Centralized WebDriver lifecycle** — a `BaseTest` class handles driver initialization/teardown, reading browser and environment settings from `config.properties` (loaded via classpath, so the framework runs on any machine without hardcoded paths)
 - **Custom wait strategy** — explicit `WebDriverWait` utilities instead of hardcoded sleeps
@@ -85,20 +91,15 @@ The active browser, base URL, and login credentials are configured in `src/main/
 - **Screenshots:** Captured automatically the moment any Selenium action fails (not just at test end), saved to the `screenshots/` folder with a timestamped filename — via a centralized event listener rather than manual calls in each test.
 
 ## 🔄 CI/CD
+This framework is integrated with **Jenkins** using two Maven-based freestyle jobs:
 
-This framework runs through a **Jenkins** freestyle job configured to execute the Maven build (`clean install`) against this project. The job currently points directly at the local project workspace and is triggered manually; the natural next step is configuring Jenkins with SCM polling (or a webhook) against this GitHub repository so builds trigger automatically on every push, rather than running against the local filesystem directly.
+- **Local build job** — runs directly against the local project workspace, useful for quick validation during active development.
+- **GitHub-integrated job** — checks out this repository from GitHub and runs the same Maven build, keeping CI results tied to the actual pushed code rather than the local filesystem.
 
-## 📌 Known Limitations / Next Steps
-
-- [ ] Wire Jenkins to check out from GitHub (SCM polling) instead of building from the local workspace directly
-- [ ] Add a `Jenkinsfile` to define the pipeline as code
-- [ ] Extend data-driven coverage and assertions to the PIM and Leave modules
-- [ ] Add cross-browser execution as part of CI
-- [ ] Add API-level tests alongside UI tests
+Both jobs execute the full TestNG suite and publish HTML test reports. 
 
 ## 👤 Author
 
 **Dulinie Egodawatta** — [GitHub Profile](https://github.com/dulinie)
-
 ---
-*This framework was built as part of ongoing QA/SDET skill development, with a focus on realistic framework design, debugging, and CI integration rather than tutorial-following.*
+*This framework was built as part of ongoing QA/SDET skill development, with a focus on realistic framework design, debugging, and CI integration /*
