@@ -2,6 +2,8 @@
 
 A Selenium-based test automation framework for the [OrangeHRM](https://opensource-demo.orangehrmlive.com/) demo application, built with Java and Maven.
 
+Leveraged GitHub Copilot in VS Code for AI-assisted code completion and Claude AI for code review and debugging support.
+
 ## 🎯 Purpose
 
 This project demonstrates a UI test automation framework covering followiing core OrangeHRM  workflows 
