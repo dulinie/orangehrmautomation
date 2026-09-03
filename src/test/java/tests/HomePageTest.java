@@ -1,14 +1,7 @@
 package tests;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import Utilities.ScreenshotUtils;
-
 import org.testng.Assert;
-import org.testng.ITestResult;
-
-import base.BaseTest;
 import pages.AdminPage;
 import pages.HomePage;
 import pages.LeavePage;
@@ -16,7 +9,7 @@ import pages.LoginPage;
 import pages.PIMPage;
 
 
-public class HomePageTest extends BaseTest {
+public class HomePageTest extends TestBase {
     LoginPage loginPage;
     HomePage homePage;
     AdminPage adminPage;
@@ -28,8 +21,7 @@ public class HomePageTest extends BaseTest {
     }
 
     @BeforeMethod
-    public void setUp() {
-        initialize(); // Initialize WebDriver and open the browser
+    public void SetUp() {
         loginPage = new LoginPage(); // Create an instance of the LoginPage
         homePage = loginPage.login(prop.getProperty("username"), prop.getProperty("password")); // Perform login to navigate to HomePage
         adminPage = new AdminPage(); // Create an instance of the AdminPage
@@ -51,8 +43,8 @@ public class HomePageTest extends BaseTest {
         Assert.assertTrue(isDashboardHeaderDisplayed, "Dashboard header is not displayed"); // Assert that the dashboard header is displayed
     }
 
-@Test(priority = 3)
-public void clickOnAdminTabTest() {
+    @Test(priority = 3)
+    public void clickOnAdminTabTest() {
         adminPage = homePage.clickAdminMenu(); // Click on the Admin tab
             }
 
@@ -66,13 +58,4 @@ public void clickOnAdminTabTest() {
         leavePage = homePage.clickLeaveMenu(); // Click on the Leave tab
         }
 
-  @AfterMethod
-public void tearDown(ITestResult result) {
-    if (result.getStatus() == ITestResult.FAILURE) {
-        ScreenshotUtils.captureScreenshot(driver, result.getName());
-    }
-    if (driver != null) {
-        driver.quit();
-    }
 } 
-}
