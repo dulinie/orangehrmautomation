@@ -16,7 +16,7 @@ public class LoginTest extends TestBase {
     }   
 
      @BeforeMethod
-     public void SetUp() {
+     public void loginPageSetUp() {
         loginPage = new LoginPage(); // Create an instance of the LoginPage  
     }
 

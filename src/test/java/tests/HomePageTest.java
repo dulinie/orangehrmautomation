@@ -21,7 +21,7 @@ public class HomePageTest extends TestBase {
     }
 
     @BeforeMethod
-    public void SetUp() {
+    public void HomePageSetUp() {
         loginPage = new LoginPage(); // Create an instance of the LoginPage
         homePage = loginPage.login(prop.getProperty("username"), prop.getProperty("password")); // Perform login to navigate to HomePage
         adminPage = new AdminPage(); // Create an instance of the AdminPage
