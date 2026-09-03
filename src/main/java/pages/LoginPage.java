@@ -40,7 +40,7 @@ public class LoginPage extends BaseTest {
         return title;   
     }
 
-public boolean validateOrangeHrmLogo() {
+    public boolean validateOrangeHrmLogo() {
     try {
         // Wait for logo to be visible
         WaitUtils.waitForElementToBeVisible(driver, orangeHrmLogo);
