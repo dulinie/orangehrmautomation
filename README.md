@@ -1,107 +1,169 @@
-# OrangeHRM Test Automation Framework
+# OrangeHRM Automation Framework
 
-A Selenium-based test automation framework for the [OrangeHRM](https://opensource-demo.orangehrmlive.com/) demo application, built with Java and Maven.
+This project is a Selenium-based test automation suite for the OrangeHRM demo application. It is built with Java, Maven, TestNG, and the Page Object Model (POM) to cover login, dashboard navigation, admin actions, and employee creation workflows.
 
-Leveraged GitHub Copilot in VS Code for AI-assisted code completion and Claude AI for code review and debugging support.
+## Overview
 
-## 🎯 Purpose
+The framework is designed to automate UI validation against the OrangeHRM demo environment and keep tests maintainable through reusable page objects, centralized browser setup, and externalized configuration.
 
-This project demonstrates a UI test automation framework covering followiing core OrangeHRM  workflows 
-1. login
-2. dashboard navigation
-3. admin user management
-4. New employee creation.
+## Tech Stack
 
- It was built to practice and showcase test automation design patterns, framework architecture, and CI integration.
+- Java 25
+- Maven
+- Selenium WebDriver 4
+- TestNG
+- WebDriverManager
+- Apache POI
+- Log4j2
+- ExtentReports
+- Page Object Model (POM)
+- Leveraged GitHub Copilot in VS Code for AI-assisted code completion and Claude AI for code review and debugging support.
 
-## 🛠️ Tech Stack
+## Project Structure
 
-- **Language:** Java (JDK 25)
-- **Build Tool:** Maven
-- **Automation Tool:** Selenium WebDriver 4 (with `EventFiringDecorator` for centralized event handling)
-- **Driver Management:** WebDriverManager (automatic browser driver resolution — no manual driver downloads)
-- **Test Runner:** TestNG
-- **Design Pattern:** Page Object Model (POM)
-- **Test Data:** Data-driven testing via Excel (`orangehrmTestData/`), read using Apache POI
-- **Logging:** Log4j2 — structured logging to console and rolling file appender (`logs/application.log`)
-- **Reporting:** TestNG HTML report, Extent Report
-- **Screenshot Capture:** Automatic screenshot capture on any Selenium action failure, via a custom `WebEventListener`
-- **CI:** Jenkins (Maven-based freestyle job)
-
-## 📁 Project Structure
-
-```
+```text
 orangehrmautomation/
-├── orangehrmTestData/          # Excel test data files (read via Apache POI)
-├── screenshots/                # Auto-captured screenshots on failure
-├── logs/                       # Log4j2 output (application.log)
+├── logs/                          # Log output generated during test execution
+├── orangehrmTestData/             # Excel files used for data-driven tests
+├── screenshots/                  # Screenshot artifacts captured during failures
 ├── src/
-│   ├── main/java/
-│   │   ├── base/                # BaseTest - WebDriver lifecycle, config loading
-│   │   ├── pages/                # Page Objects (POM)
-│   │   └── Utilities/             # WaitUtils, DataProviderUtils, ScreenshotUtils, WebEventListener
-│   ├── main/resources/
-│   │   ├── config.properties      # Browser, URL, credentials config
-│   │   ├── log4j2.xml              # Logging configuration
-│   │   └── testng.xml               # TestNG suite definition
-│   └── test/java/tests/            # Test classes
-├── pom.xml                      # Maven dependencies and build configuration
+│   ├── main/
+│   │   ├── java/
+│   │   │   ├── base/
+│   │   │   │   └── BaseTest.java
+│   │   │   ├── pages/
+│   │   │   │   ├── AddEmployeePage.java
+│   │   │   │   ├── AdminPage.java
+│   │   │   │   ├── HomePage.java
+│   │   │   │   ├── LeavePage.java
+│   │   │   │   ├── LoginPage.java
+│   │   │   │   └── PIMPage.java
+│   │   │   ├── Utilities/
+│   │   │   │   ├── DataProviderUtils.java
+│   │   │   │   ├── ScreenshotUtils.java
+│   │   │   │   ├── WaitUtils.java
+│   │   │   │   └── WebEventListener.java
+│   │   │   └── com/orangehrmautomation/qa/ExtentReportListener/
+│   │   └── resources/
+│   │       ├── config.properties
+│   │       ├── log4j2.xml
+│   │       ├── testng.xml
+│   │       ├── testng_regression.xml
+│   │       └── testng_sanity.xml
+│   └── test/
+│       └── java/
+│           └── tests/
+│               ├── AddEmployeePageTest.java
+│               ├── AdminPageTest.java
+│               ├── HomePageTest.java
+│               ├── LoginTest.java
+│               └── TestBase.java
+├── pom.xml
+├── build.txt
+├── README.md
+├── target/                       # Maven build output and test reports
+└── .gitignore
 ```
 
-## ✅ Features
+## Key Features
 
-- **Page Object Model** -  maintainable, reusable page interactions
-- **Data-driven testing** — employee creation test data pulled from Excel via Apache POI, decoupling test logic from test data
-- **Centralized WebDriver lifecycle** — a `BaseTest` class handles driver initialization/teardown, reading browser and environment settings from `config.properties` (loaded via classpath, so the framework runs on any machine without hardcoded paths)
-- **Custom wait strategy** — explicit `WebDriverWait` utilities instead of hardcoded sleeps
-- **Event-driven logging & error capture** — a `WebEventListener` (via Selenium's `EventFiringDecorator`) logs every browser interaction and automatically captures a screenshot the moment any Selenium action throws an error
-- **Structured logging** with Log4j2, written to both console and a rolling log file
-- **Configurable browser selection** (Chrome/Firefox/Edge) via `config.properties`, with WebDriverManager handling driver binaries automatically
+- POM-based test design for cleaner maintenance and readability
+- Centralized browser initialization and configuration in `BaseTest`
+- Browser selection through `config.properties` (Chrome, Firefox, or Edge)
+- Automatic driver provisioning with WebDriverManager
+- Data-driven employee creation using Excel files via Apache POI
+- Log4j2 logging for runtime traceability
+- Screenshot capture on failure through Selenium event listeners
+- ExtentReports integration for richer reporting
+- TestNG-based suite execution with reusable test classes
 
-## 🚀 Getting Started
+## Covered Test Scenarios
 
-### Prerequisites
-- Java JDK 25
-- Maven 3.9+
-- Chrome, Firefox, or Edge installed
+The suite includes tests for:
 
-### Installation
-```bash
-git clone https://github.com/dulinie/orangehrmautomation.git
-cd orangehrmautomation
-mvn clean install
+- Login functionality
+- Dashboard and page title validation
+- Navigation to Admin, PIM, and Leave sections
+- Admin page interactions
+- Add employee workflow using test data from Excel
+
+The default suite in `src/main/resources/testng.xml` runs:
+
+- `tests.LoginTest`
+- `tests.HomePageTest`
+- `tests.AdminPageTest`
+- `tests.AddEmployeePageTest`
+
+## Prerequisites
+
+Before running the tests, make sure you have:
+
+- JDK 25 installed
+- Maven 3.9+ installed
+- Chrome, Firefox, or Edge installed locally
+
+## Configuration
+
+The application URL, username, password, and browser are stored in:
+
+`src/main/resources/config.properties`
+
+Example values:
+
+```properties
+url = https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
+username = Admin
+password = admin123
+browser = chrome
 ```
 
-### Running Tests
+## Running the Tests
+
+Run the full suite:
+
 ```bash
 mvn clean test
 ```
 
-The active browser, base URL, and login credentials are configured in `src/main/resources/config.properties`.
+Run a specific test class:
 
-## 📊 Test Coverage
+```bash
+mvn -Dtest=LoginTest test
+mvn -Dtest=HomePageTest test
+mvn -Dtest=AddEmployeePageTest test
+```
 
-- **Login:** Page title and OrangeHRM logo validation
-- **Home/Dashboard:** Title and dashboard header validation after login; navigation to Admin, PIM, and Leave tabs
-- **Admin:** Page title, header, and "Add Employee" button visibility
-- **Add Employee:** Data-driven creation of new employee user accounts, with role, status, and credentials pulled from an Excel sheet (multiple test data rows run automatically via a TestNG `DataProvider`)
+Run a specific TestNG suite file if needed:
 
-## 📸 Logs, Reports & Screenshots
+```bash
+mvn test -DsuiteXmlFile=src/main/resources/testng.xml
+```
 
-- **Logs:** Every browser interaction, test action, and error is logged via Log4j2 to `logs/application.log` and the console — useful for tracing exactly what happened leading up to a failure.
-- **Reports:** TestNG HTML reports are generated under `target/surefire-reports` after each run.
-- **Screenshots:** Captured automatically the moment any Selenium action fails (not just at test end), saved to the `screenshots/` folder with a timestamped filename — via a centralized event listener rather than manual calls in each test.
+## Reports and Artifacts
 
-## 🔄 CI/CD
-This framework is integrated with **Jenkins** using two Maven-based freestyle jobs:
+After execution, reports and artifacts are generated in:
 
-- **Local build job** — runs directly against the local project workspace, useful for quick validation during active development.
-- **GitHub-integrated job** — checks out this repository from GitHub and runs the same Maven build, keeping CI results tied to the actual pushed code rather than the local filesystem.
+- `target/surefire-reports/` — TestNG HTML/XML reports
+- `screenshots/` — failure screenshots
+- `logs/` — runtime log files
 
-Both jobs execute the full TestNG suite and publish HTML test reports. 
+## CI/CD
+This framework is integrated with Jenkins using two Maven-based freestyle jobs:
 
-## 👤 Author
+Local build job — runs directly against the local project workspace, useful for quick validation during active development.
+GitHub-integrated job — checks out this repository from GitHub and runs the same Maven build, keeping CI results tied to the actual pushed code rather than the local filesystem.
+Both jobs execute the full TestNG suite and publish HTML test reports.
 
-**Dulinie Egodawatta** — [GitHub Profile](https://github.com/dulinie)
----
-*This framework was built as part of ongoing QA/SDET skill development, with a focus on realistic framework design, debugging, and CI integration /*
+## Notes
+
+- The project uses a data-driven pattern for employee creation through `orangehrmTestData/OrangeHRMDemData.xlsx`.
+- Test execution depends on the OrangeHRM demo environment being available.
+- If Maven encounters a stale file issue during `clean`, close the browser or any process holding the generated report files and rerun the command.
+
+## Author
+
+Dulinie Egodawatta
+
+## Project Purpose
+
+This repository demonstrates hands-on automation testing practice for a real-world web application using Java-based UI automation, maintainable test design, and reporting best practices.
