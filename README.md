@@ -1,12 +1,26 @@
-# OrangeHRM Automation Framework
+# 🚀 OrangeHRM Automation Framework
+
+![Java](https://img.shields.io/badge/Java-25-blue?style=for-the-badge)
+![Selenium](https://img.shields.io/badge/Selenium-WebDriver%204-43B02A?style=for-the-badge)
+![TestNG](https://img.shields.io/badge/TestNG-7.10.2-FF6A00?style=for-the-badge)
+![Maven](https://img.shields.io/badge/Maven-Build-C71A36?style=for-the-badge)
 
 This project is a Selenium-based test automation suite for the OrangeHRM demo application. It is built with Java, Maven, TestNG, and the Page Object Model (POM) to cover login, dashboard navigation, admin actions, and employee creation workflows.
 
-## Overview
+This framework was developed with a modern AI-assisted workflow, where GitHub Copilot supported development productivity and Claude AI assisted with debugging, review, and troubleshooting. The implementation, architecture decisions, and validation work were driven by my own engineering judgment and hands-on project work.
+
+## 🌐 Overview
 
 The framework is designed to automate UI validation against the OrangeHRM demo environment and keep tests maintainable through reusable page objects, centralized browser setup, and externalized configuration.
 
-## Tech Stack
+## ⚙️ How It Works
+
+1. Load configuration values from `config.properties`.
+2. Initialize the selected browser with WebDriverManager.
+3. Navigate to the OrangeHRM login page and automate user flows through POM classes.
+4. Capture test results, logs, screenshots, and reports after execution.
+
+## 🧰 Tech Stack
 
 - Java 25
 - Maven
@@ -17,9 +31,9 @@ The framework is designed to automate UI validation against the OrangeHRM demo e
 - Log4j2
 - ExtentReports
 - Page Object Model (POM)
-- Leveraged GitHub Copilot in VS Code for AI-assisted code completion and Claude AI for code review and debugging support.
+- AI-assisted development workflow in VS Code
 
-## Project Structure
+## 📁 Project Structure
 
 ```text
 orangehrmautomation/
@@ -65,7 +79,7 @@ orangehrmautomation/
 └── .gitignore
 ```
 
-## Key Features
+## ✨ Key Features
 
 - POM-based test design for cleaner maintenance and readability
 - Centralized browser initialization and configuration in `BaseTest`
@@ -77,7 +91,7 @@ orangehrmautomation/
 - ExtentReports integration for richer reporting
 - TestNG-based suite execution with reusable test classes
 
-## Covered Test Scenarios
+## 🧪 Covered Test Scenarios
 
 The suite includes tests for:
 
@@ -94,7 +108,7 @@ The default suite in `src/main/resources/testng.xml` runs:
 - `tests.AdminPageTest`
 - `tests.AddEmployeePageTest`
 
-## Prerequisites
+## ✅ Prerequisites
 
 Before running the tests, make sure you have:
 
@@ -102,7 +116,7 @@ Before running the tests, make sure you have:
 - Maven 3.9+ installed
 - Chrome, Firefox, or Edge installed locally
 
-## Configuration
+## ⚙️ Configuration
 
 The application URL, username, password, and browser are stored in:
 
@@ -117,7 +131,7 @@ password = admin123
 browser = chrome
 ```
 
-## Running the Tests
+## ▶️ Running the Tests
 
 Run the full suite:
 
@@ -139,7 +153,7 @@ Run a specific TestNG suite file if needed:
 mvn test -DsuiteXmlFile=src/main/resources/testng.xml
 ```
 
-## Reports and Artifacts
+## 📊 Reports and Artifacts
 
 After execution, reports and artifacts are generated in:
 
@@ -147,23 +161,23 @@ After execution, reports and artifacts are generated in:
 - `screenshots/` — failure screenshots
 - `logs/` — runtime log files
 
-## CI/CD
+## 🔄 CI/CD
 This framework is integrated with Jenkins using two Maven-based freestyle jobs:
 
-Local build job — runs directly against the local project workspace, useful for quick validation during active development.
-GitHub-integrated job — checks out this repository from GitHub and runs the same Maven build, keeping CI results tied to the actual pushed code rather than the local filesystem.
+- Local build job — runs directly against the local project workspace, useful for quick validation during active development.
+- GitHub-integrated job — checks out this repository from GitHub and runs the same Maven build, keeping CI results tied to the actual pushed code rather than the local filesystem.
 Both jobs execute the full TestNG suite and publish HTML test reports.
 
-## Notes
+## 📝 Notes
 
 - The project uses a data-driven pattern for employee creation through `orangehrmTestData/OrangeHRMDemData.xlsx`.
 - Test execution depends on the OrangeHRM demo environment being available.
 - If Maven encounters a stale file issue during `clean`, close the browser or any process holding the generated report files and rerun the command.
 
-## Author
+## 👤 Author
 
 Dulinie Egodawatta
 
-## Project Purpose
+## 🎯 Project Purpose
 
 This repository demonstrates hands-on automation testing practice for a real-world web application using Java-based UI automation, maintainable test design, and reporting best practices.
